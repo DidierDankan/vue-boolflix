@@ -4,7 +4,11 @@
     <Header @performSearch="searchInfo" />
     <!-- main content -->
 
-    <Main :listOfSearch="getMovies" />
+    <Main
+      :listOfMovies="movies"
+      :searchResult="searching"
+      :listOfSeries="series"
+    />
   </div>
 </template>
 
@@ -22,30 +26,30 @@ export default {
   },
   data() {
     return {
-      apiURL:
-        "https://api.themoviedb.org/3/search/movie?api_key=601edd5f9c75134b378e20f00be3a1bb",
+      apiURLMovie: "https://api.themoviedb.org/3/search/movie",
+      apiURLTv: "https://api.themoviedb.org/3/search/tv",
       movies: [],
+      series: [],
       // filteredMovies: [],
       // flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
       loading: true,
       searching: "",
     };
   },
-  computed: {},
-  created() {},
   methods: {
     getMovies() {
       /**
-       * API call
+       * API call of movies
        */
+
       axios
-        .get(this.apiURL, {
+        .get(this.apiURLMovie, {
           params: {
+            api_key: "601edd5f9c75134b378e20f00be3a1bb",
             query: this.searching,
           },
         })
         .then((res) => {
-          console.log(this.movies);
           this.movies = res.data.results;
           console.log(this.movies);
         })
@@ -54,15 +58,30 @@ export default {
         });
     },
 
-    // searchMovieSerie() {
-    //   if (this.movies[0].title.toLowerCase() === this.searching.toLowerCase()) {
-    //     this.filteredMovies = this.movies;
-    //   }
-    //   return this.filteredMovies;
-    // },
+    getSeries() {
+      /**
+       * API call series
+       */
+      axios
+        .get(this.apiURLTv, {
+          params: {
+            api_key: "601edd5f9c75134b378e20f00be3a1bb",
+            query: this.searching,
+          },
+        })
+        .then((res) => {
+          this.series = res.data.results;
+          console.log(this.series);
+        })
+        .catch((err) => {
+          console.log("error", err);
+        });
+    },
 
     searchInfo(searchText) {
       this.searching = searchText.toLowerCase();
+      this.getMovies();
+      this.getSeries();
     },
   },
 };
