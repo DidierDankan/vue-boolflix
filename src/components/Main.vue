@@ -25,8 +25,18 @@
         <!-- vote -->
         <li>
           Vote: {{ changeNumber(movie.vote_average) }}
-          <i class="fas fa-star"></i>
-          <i class="far fa-star"></i>
+          <span
+            v-for="(star, x) in changeNumber(movie.vote_average)"
+            :key="x + 10"
+          >
+            <i class="fas fa-star"></i>
+          </span>
+          <span
+            v-for="(star, i) in 5 - changeNumber(movie.vote_average)"
+            :key="i + 100"
+          >
+            <i class="far fa-star"></i>
+          </span>
         </li>
       </ul>
     </section>
@@ -55,10 +65,18 @@
         <!-- vote -->
         <li>
           Vote: {{ changeNumber(serie.vote_average) }}
-          <span>
+          <span
+            v-for="(star, x) in changeNumber(serie.vote_average)"
+            :key="x + 10"
+          >
             <i class="fas fa-star"></i>
-            <i class="far fa-star"></i
-          ></span>
+          </span>
+          <span
+            v-for="(star, i) in 5 - changeNumber(serie.vote_average)"
+            :key="i + 100"
+          >
+            <i class="far fa-star"></i>
+          </span>
         </li>
       </ul>
     </section>
@@ -71,11 +89,17 @@ export default {
   name: "Main",
   props: ["listOfMovies", "searchResult", "listOfSeries"],
   data() {
-    return {};
+    return {
+      qualityStars: "",
+    };
   },
   methods: {
     changeNumber(number) {
       return Math.round((number * 5) / 10);
+    },
+    getStars() {
+      this.qualityStars = this.changeNumber(this.serie.vote_average);
+      console.log(this.qualityStars);
     },
   },
 };
