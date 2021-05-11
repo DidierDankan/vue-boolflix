@@ -34,24 +34,6 @@ export default {
   computed: {},
   created() {},
   methods: {
-    // getMovies() {
-    //   /**
-    //    * API call
-    //    */
-    //   axios
-    //     .get(this.apiURL, {
-    //       params: {
-    //         query: this.searching,
-    //       },
-    //     })
-    //     .then((res) => {
-    //       this.movies = res.data.results;
-    //       console.log(this.movies);
-    //     })
-    //     .catch((err) => {
-    //       console.log("error", err);
-    //     });
-    // },
     getMovies() {
       /**
        * API call
@@ -63,6 +45,7 @@ export default {
           },
         })
         .then((res) => {
+          console.log(this.movies);
           this.movies = res.data.results;
           console.log(this.movies);
         })

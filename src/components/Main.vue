@@ -28,7 +28,6 @@ export default {
       //   flags: ["it", "en"],
     };
   },
-  created() {},
   methods: {},
   //     searchMovieSerie() {
   //       if (this.listOfSearch[0].title.toLowerCase() === this.searchResult) {
