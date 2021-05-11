@@ -1,14 +1,18 @@
 <template>
   <main>
+    <!-- movies -->
     <section class="movies">
       <p>Movies</p>
       <ul v-for="movie in listOfMovies" :key="movie.id">
+        <!-- movie poster -->
         <img
           :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`"
           :alt="movie.title"
         />
+        <!--  movie info -->
         <li>Title: {{ movie.title }}</li>
         <li>Original Title: {{ movie.original_title }}</li>
+        <!-- validation for language flag -->
         <li v-if="movie.original_language === 'en'">
           <span>Original Language: </span
           ><img src="@/img/en.png" :alt="movie.original_language" />
@@ -18,35 +22,44 @@
           ><img src="@/img/it.png" :alt="movie.original_language" />
         </li>
         <li v-else>{{ movie.original_language }}</li>
-        <li>Vote: {{ movie.vote_average }}</li>
-        <!-- <li>
-        <img
-          :src="movie.original_language ? './img/en.png' : './img/it.png'"
-          alt=""
-        />
-      </li> -->
+        <!-- vote -->
+        <li>
+          Vote: {{ changeNumber(movie.vote_average) }}
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
       </ul>
     </section>
+    <!-- series -->
     <section class="series">
       <p>Series</p>
-
-      <ul v-for="movie in listOfSeries" :key="movie.id">
+      <ul v-for="serie in listOfSeries" :key="serie.id">
+        <!-- serie poster -->
         <img
-          :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`"
-          :alt="movie.title"
+          :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`"
+          :alt="serie.title"
         />
-        <li>{{ movie.name }}</li>
-        <li>{{ movie.original_name }}</li>
-        <li v-if="movie.original_language === 'en'">
+        <!-- series info -->
+        <li>{{ serie.name }}</li>
+        <li>{{ serie.original_name }}</li>
+        <!-- validation for language flag -->
+        <li v-if="serie.original_language === 'en'">
           <span>Original Language: </span
-          ><img src="@/img/en.png" :alt="movie.original_language" />
+          ><img src="@/img/en.png" :alt="serie.original_language" />
         </li>
-        <li v-else-if="movie.original_language === 'it'">
+        <li v-else-if="serie.original_language === 'it'">
           <span>Original Language: </span
-          ><img src="@/img/it.png" :alt="movie.original_language" />
+          ><img src="@/img/it.png" :alt="serie.original_language" />
         </li>
-        <li v-else>{{ movie.original_language }}</li>
-        <li>Vote: {{ movie.vote_average }}</li>
+        <li v-else>{{ serie.original_language }}</li>
+        <!-- vote -->
+        <li>
+          Vote: {{ changeNumber(serie.vote_average) }}
+          <span>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i
+          ></span>
+        </li>
       </ul>
     </section>
   </main>
@@ -58,11 +71,13 @@ export default {
   name: "Main",
   props: ["listOfMovies", "searchResult", "listOfSeries"],
   data() {
-    return {
-      //   flags: ["it", "en"],
-    };
+    return {};
   },
-  methods: {},
+  methods: {
+    changeNumber(number) {
+      return Math.round((number * 5) / 10);
+    },
+  },
 };
 </script>
 
