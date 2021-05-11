@@ -4,7 +4,7 @@
     <Header @performSearch="searchInfo" />
     <!-- main content -->
 
-    <Main :listOfSearch="filteredMovies" />
+    <Main :listOfSearch="getMovies" />
   </div>
 </template>
 
@@ -23,37 +23,45 @@ export default {
   data() {
     return {
       apiURL:
-        "https://api.themoviedb.org/3/search/movie?api_key=601edd5f9c75134b378e20f00be3a1bb&query=Mortal-Kombat",
+        "https://api.themoviedb.org/3/search/movie?api_key=601edd5f9c75134b378e20f00be3a1bb",
       movies: [],
-      filteredMovies: [],
+      // filteredMovies: [],
       // flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
       loading: true,
       searching: "",
     };
   },
-  computed: {
-    searchMovieSerie() {
-      if (
-        this.movies[0].title
-          .toLowerCase()
-          .includes(this.searching.toLowerCase())
-      ) {
-        this.filteredMovies = this.movies;
-      }
-      return this.filteredMovies;
-    },
-  },
-  created() {
-    this.getMovies();
-    console.log(this.filteredMovies);
-  },
+  computed: {},
+  created() {},
   methods: {
+    // getMovies() {
+    //   /**
+    //    * API call
+    //    */
+    //   axios
+    //     .get(this.apiURL, {
+    //       params: {
+    //         query: this.searching,
+    //       },
+    //     })
+    //     .then((res) => {
+    //       this.movies = res.data.results;
+    //       console.log(this.movies);
+    //     })
+    //     .catch((err) => {
+    //       console.log("error", err);
+    //     });
+    // },
     getMovies() {
       /**
        * API call
        */
       axios
-        .get(this.apiURL)
+        .get(this.apiURL, {
+          params: {
+            query: this.searching,
+          },
+        })
         .then((res) => {
           this.movies = res.data.results;
           console.log(this.movies);
@@ -63,10 +71,8 @@ export default {
         });
     },
 
-    // searchMovieSerie(searching) {
-    //   if (
-    //     this.movies[0].title.toLowerCase().includes(searching.toLowerCase())
-    //   ) {
+    // searchMovieSerie() {
+    //   if (this.movies[0].title.toLowerCase() === this.searching.toLowerCase()) {
     //     this.filteredMovies = this.movies;
     //   }
     //   return this.filteredMovies;
