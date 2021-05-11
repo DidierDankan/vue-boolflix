@@ -4,12 +4,15 @@
       <li>{{ movie.title }}</li>
       <li>{{ movie.original_title }}</li>
       <li v-if="movie.original_language === 'en'">
-        <img :src="flagLanguage[0]" :alt="movie.original_language" />
+        <img src="@/img/en.png" alt="" />
       </li>
       <li v-else-if="movie.original_language === 'it'">
-        <img :src="flagLanguage[1]" :alt="movie.original_language" />
+        <img src="@/img/it.png" alt="" />
       </li>
       <li v-else>{{ movie.original_language }}</li>
+      <!-- <li>
+        <img :src="movie.original_language ? flags[0] : flags[1]" alt="" />
+      </li> -->
       <li>{{ movie.vote_average }}</li>
     </ul>
   </main>
@@ -17,21 +20,32 @@
 
 <script>
 export default {
+  // "searchResult"
   name: "Main",
-  props: ["listOfSearch", "searchResult", "flagLanguage"],
-  created() {
-    console.log(this.listOfSearch);
+  props: ["listOfSearch"],
+  data() {
+    return {
+      //   flags: ["it", "en"],
+    };
   },
-  methods: {
-    searchMovieSerie() {
-      if (
-        this.listOfSearch[0].title.toLowerCase().includes(this.searchResult)
-      ) {
-        return this.listOfSearch;
-      }
-    },
-  },
+  created() {},
+  methods: {},
+  //     searchMovieSerie() {
+  //       if (this.listOfSearch[0].title.toLowerCase() === this.searchResult) {
+  //         return this.listOfSearch;
+  //       }
+  //     },
+  //   },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+ul {
+  li {
+    img {
+      width: 35px;
+      height: 20px;
+    }
+  }
+}
+</style>

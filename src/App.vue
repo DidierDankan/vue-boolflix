@@ -4,11 +4,7 @@
     <Header @performSearch="searchInfo" />
     <!-- main content -->
 
-    <Main
-      :listOfSearch="movies"
-      :searchResult="searching"
-      :flagLanguage="flags"
-    />
+    <Main :listOfSearch="filteredMovies" />
   </div>
 </template>
 
@@ -29,13 +25,27 @@ export default {
       apiURL:
         "https://api.themoviedb.org/3/search/movie?api_key=601edd5f9c75134b378e20f00be3a1bb&query=Mortal-Kombat",
       movies: [],
-      flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
+      filteredMovies: [],
+      // flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
       loading: true,
       searching: "",
     };
   },
+  computed: {
+    searchMovieSerie() {
+      if (
+        this.movies[0].title
+          .toLowerCase()
+          .includes(this.searching.toLowerCase())
+      ) {
+        this.filteredMovies = this.movies;
+      }
+      return this.filteredMovies;
+    },
+  },
   created() {
     this.getMovies();
+    console.log(this.filteredMovies);
   },
   methods: {
     getMovies() {
@@ -46,11 +56,22 @@ export default {
         .get(this.apiURL)
         .then((res) => {
           this.movies = res.data.results;
+          console.log(this.movies);
         })
         .catch((err) => {
           console.log("error", err);
         });
     },
+
+    // searchMovieSerie(searching) {
+    //   if (
+    //     this.movies[0].title.toLowerCase().includes(searching.toLowerCase())
+    //   ) {
+    //     this.filteredMovies = this.movies;
+    //   }
+    //   return this.filteredMovies;
+    // },
+
     searchInfo(searchText) {
       this.searching = searchText.toLowerCase();
     },
