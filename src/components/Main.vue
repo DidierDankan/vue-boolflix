@@ -3,16 +3,22 @@
     <section class="movies">
       <p>Movies</p>
       <ul v-for="movie in listOfMovies" :key="movie.id">
-        <li>{{ movie.title }}</li>
-        <li>{{ movie.original_title }}</li>
+        <img
+          :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`"
+          :alt="movie.title"
+        />
+        <li>Title: {{ movie.title }}</li>
+        <li>Original Title: {{ movie.original_title }}</li>
         <li v-if="movie.original_language === 'en'">
-          <img src="@/img/en.png" :alt="movie.original_language" />
+          <span>Original Language: </span
+          ><img src="@/img/en.png" :alt="movie.original_language" />
         </li>
         <li v-else-if="movie.original_language === 'it'">
-          <img src="@/img/it.png" :alt="movie.original_language" />
+          <span>Original Language: </span
+          ><img src="@/img/it.png" :alt="movie.original_language" />
         </li>
         <li v-else>{{ movie.original_language }}</li>
-        <li>{{ movie.vote_average }}</li>
+        <li>Vote: {{ movie.vote_average }}</li>
         <!-- <li>
         <img
           :src="movie.original_language ? './img/en.png' : './img/it.png'"
@@ -23,17 +29,24 @@
     </section>
     <section class="series">
       <p>Series</p>
+
       <ul v-for="movie in listOfSeries" :key="movie.id">
+        <img
+          :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`"
+          :alt="movie.title"
+        />
         <li>{{ movie.name }}</li>
         <li>{{ movie.original_name }}</li>
         <li v-if="movie.original_language === 'en'">
-          <img src="@/img/en.png" :alt="movie.original_language" />
+          <span>Original Language: </span
+          ><img src="@/img/en.png" :alt="movie.original_language" />
         </li>
         <li v-else-if="movie.original_language === 'it'">
-          <img src="@/img/it.png" :alt="movie.original_language" />
+          <span>Original Language: </span
+          ><img src="@/img/it.png" :alt="movie.original_language" />
         </li>
         <li v-else>{{ movie.original_language }}</li>
-        <li>{{ movie.vote_average }}</li>
+        <li>Vote: {{ movie.vote_average }}</li>
       </ul>
     </section>
   </main>
