@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- header -->
-    <Header @performSearch="searchInfo" />
+    <Header @performSearch="getSearch" />
     <!-- main content -->
 
     <Main
@@ -26,8 +26,8 @@ export default {
   },
   data() {
     return {
-      apiURLMovie: "https://api.themoviedb.org/3/search/movie",
-      apiURLTv: "https://api.themoviedb.org/3/search/tv",
+      apiURLMovie: "https://api.themoviedb.org/3/search/",
+      apiURLTv: "https://api.themoviedb.org/3/search/",
       movies: [],
       series: [],
       // filteredMovies: [],
@@ -37,55 +37,48 @@ export default {
     };
   },
   methods: {
-    getMovies() {
+    getSearch(searchText) {
       /**
        * API call of movies
        */
-      if (this.searching !== "") {
+      if (searchText !== "") {
         axios
-          .get(this.apiURLMovie, {
+          .get(this.apiURLMovie + "movie", {
             params: {
               api_key: "601edd5f9c75134b378e20f00be3a1bb",
-              query: this.searching,
+              query: searchText,
             },
           })
           .then((res) => {
             this.movies = res.data.results;
-          })
-          .catch((err) => {
-            console.log("error", err);
           });
-      }
-    },
 
-    getSeries() {
-      /**
-       * API call series
-       */
-      if (this.searching !== "") {
+        /**
+         * API call series
+         */
         axios
-          .get(this.apiURLTv, {
+          .get(this.apiURLTv + "tv", {
             params: {
               api_key: "601edd5f9c75134b378e20f00be3a1bb",
-              query: this.searching,
+              query: searchText,
             },
           })
           .then((res) => {
             this.series = res.data.results;
-          })
-          .catch((err) => {
-            console.log("error", err);
           });
       }
-    },
-
-    searchInfo(searchText) {
-      this.searching = searchText.toLowerCase();
-      this.getMovies();
-      this.getSeries();
     },
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: sans-serif;
+}
+</style>
