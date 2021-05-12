@@ -41,39 +41,42 @@ export default {
       /**
        * API call of movies
        */
-
-      axios
-        .get(this.apiURLMovie, {
-          params: {
-            api_key: "601edd5f9c75134b378e20f00be3a1bb",
-            query: this.searching,
-          },
-        })
-        .then((res) => {
-          this.movies = res.data.results;
-        })
-        .catch((err) => {
-          console.log("error", err);
-        });
+      if (this.searching !== "") {
+        axios
+          .get(this.apiURLMovie, {
+            params: {
+              api_key: "601edd5f9c75134b378e20f00be3a1bb",
+              query: this.searching,
+            },
+          })
+          .then((res) => {
+            this.movies = res.data.results;
+          })
+          .catch((err) => {
+            console.log("error", err);
+          });
+      }
     },
 
     getSeries() {
       /**
        * API call series
        */
-      axios
-        .get(this.apiURLTv, {
-          params: {
-            api_key: "601edd5f9c75134b378e20f00be3a1bb",
-            query: this.searching,
-          },
-        })
-        .then((res) => {
-          this.series = res.data.results;
-        })
-        .catch((err) => {
-          console.log("error", err);
-        });
+      if (this.searching !== "") {
+        axios
+          .get(this.apiURLTv, {
+            params: {
+              api_key: "601edd5f9c75134b378e20f00be3a1bb",
+              query: this.searching,
+            },
+          })
+          .then((res) => {
+            this.series = res.data.results;
+          })
+          .catch((err) => {
+            console.log("error", err);
+          });
+      }
     },
 
     searchInfo(searchText) {

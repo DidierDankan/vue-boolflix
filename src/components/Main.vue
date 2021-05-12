@@ -13,18 +13,18 @@
         <li>Title: {{ movie.title }}</li>
         <li>Original Title: {{ movie.original_title }}</li>
         <!-- validation for language flag -->
-        <li v-if="movie.original_language === 'en'">
-          <span>Original Language: </span
-          ><img src="@/img/en.png" :alt="movie.original_language" />
+        <li>
+          <span>Original Language: </span>
+          <img
+            v-if="getFlag(movie.original_language)"
+            :src="require(`@/img/${movie.original_language}.png`)"
+            :alt="movie.original_language"
+          />
+          <span v-else>{{ movie.original_language }}</span>
         </li>
-        <li v-else-if="movie.original_language === 'it'">
-          <span>Original Language: </span
-          ><img src="@/img/it.png" :alt="movie.original_language" />
-        </li>
-        <li v-else>{{ movie.original_language }}</li>
         <!-- vote -->
         <li>
-          Vote: {{ changeNumber(movie.vote_average) }}
+          Vote:
           <span
             v-for="(star, x) in changeNumber(movie.vote_average)"
             :key="x + 10"
@@ -53,18 +53,18 @@
         <li>{{ serie.name }}</li>
         <li>{{ serie.original_name }}</li>
         <!-- validation for language flag -->
-        <li v-if="serie.original_language === 'en'">
-          <span>Original Language: </span
-          ><img src="@/img/en.png" :alt="serie.original_language" />
-        </li>
-        <li v-else-if="serie.original_language === 'it'">
-          <span>Original Language: </span
-          ><img src="@/img/it.png" :alt="serie.original_language" />
-        </li>
-        <li v-else>{{ serie.original_language }}</li>
-        <!-- vote -->
         <li>
-          Vote: {{ changeNumber(serie.vote_average) }}
+          <span>Original Language: </span>
+          <img
+            v-if="getFlag(serie.original_language)"
+            :src="require(`@/img/${serie.original_language}.png`)"
+            :alt="serie.original_language"
+          />
+          <span v-else>{{ serie.original_language }}</span>
+        </li>
+
+        <li>
+          Vote:
           <span
             v-for="(star, x) in changeNumber(serie.vote_average)"
             :key="x + 10"
@@ -87,10 +87,12 @@
 export default {
   // "searchResult"
   name: "Main",
-  props: ["listOfMovies", "searchResult", "listOfSeries"],
+  props: ["listOfMovies", "listOfSeries"],
+
   data() {
     return {
       qualityStars: "",
+      flags: ["it", "en"],
     };
   },
   methods: {
@@ -99,7 +101,9 @@ export default {
     },
     getStars() {
       this.qualityStars = this.changeNumber(this.serie.vote_average);
-      console.log(this.qualityStars);
+    },
+    getFlag(lang) {
+      return this.flags.includes(lang);
     },
   },
 };

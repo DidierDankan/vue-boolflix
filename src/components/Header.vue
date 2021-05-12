@@ -14,7 +14,7 @@
       <input
         type="search"
         placeholder="Search movies and Tv series"
-        v-model="searchText"
+        v-model.trim="searchText"
       />
     </form>
   </header>
