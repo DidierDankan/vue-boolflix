@@ -9,6 +9,7 @@
       :searchResult="searching"
       :listOfSeries="series"
       :listOfPopular="popularMovies"
+      :listOfPopSeries="popularSeries"
     />
   </div>
 </template>
@@ -29,9 +30,11 @@ export default {
     return {
       apiURL: "https://api.themoviedb.org/3/search/",
       apiURLPop: "https://api.themoviedb.org/3/discover/",
+      apiURLSerie: "https://api.themoviedb.org/3/tv/",
       movies: [],
       series: [],
       popularMovies: [],
+      popularSeries: [],
       // filteredMovies: [],
       // flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
       loading: true,
@@ -40,8 +43,21 @@ export default {
   },
   created() {
     this.getPopularMovies();
+    this.getPopularSeries();
   },
   methods: {
+    getPopularSeries() {
+      axios
+        .get(this.apiURLSerie + "popular", {
+          params: {
+            api_key: "601edd5f9c75134b378e20f00be3a1bb",
+            sort_by: "popularity.desc",
+          },
+        })
+        .then((res) => {
+          this.popularSeries = res.data.results;
+        });
+    },
     getPopularMovies() {
       axios
         .get(this.apiURLPop + "movie", {

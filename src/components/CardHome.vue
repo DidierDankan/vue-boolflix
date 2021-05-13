@@ -5,7 +5,7 @@
       <img
         class="fix-size-img"
         v-if="detail.poster_path"
-        :src="`https://image.tmdb.org/t/p/w342${detail.poster_path}`"
+        :src="`https://image.tmdb.org/t/p/w185${detail.poster_path}`"
         :alt="detail.title"
       />
       <img
@@ -48,9 +48,6 @@
             <i class="far fa-star"></i>
           </span>
         </div>
-        <div>
-          <p class="overview">Overiew: {{ detail.overview }}</p>
-        </div>
       </div>
     </div>
   </div>
@@ -58,16 +55,16 @@
 
 <script>
 export default {
-  name: "Card",
+  name: "CardHome",
   props: {
     detail: Object,
   },
   data() {
     return {
-      qualityStars: "",
       flags: ["it", "en"],
     };
   },
+
   methods: {
     changeNumber(number) {
       return Math.round((number * 5) / 10);
@@ -93,12 +90,12 @@ export default {
 <style scoped lang="scss">
 .card {
   position: relative;
-  width: 342px;
-  height: 460px;
+  width: 185px;
   margin: 5px;
   border-radius: 5px;
   filter: drop-shadow(3px 0px 3px #444141a8);
   overflow: hidden;
+  cursor: pointer;
 
   &:hover .card-info {
     visibility: visible;
