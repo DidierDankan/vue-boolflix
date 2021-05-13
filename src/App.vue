@@ -47,6 +47,9 @@ export default {
   },
   methods: {
     getPopularSeries() {
+      /**
+       * API call for popular series home page
+       */
       axios
         .get(this.apiURLSerie + "popular", {
           params: {
@@ -59,6 +62,9 @@ export default {
         });
     },
     getPopularMovies() {
+      /**
+       * API call for popular movies home page
+       */
       axios
         .get(this.apiURLPop + "movie", {
           params: {
