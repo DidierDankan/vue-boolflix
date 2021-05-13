@@ -78,7 +78,7 @@ header {
       outline: none;
       transition: border 0.1s;
       &:focus {
-        border: 2px solid #d91a28;
+        outline: 2px solid #d91a28;
       }
     }
   }

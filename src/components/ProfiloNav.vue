@@ -112,8 +112,7 @@ export default {
     border-radius: 3px;
     cursor: pointer;
     &:hover .arrow {
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid #fff;
+      transform: rotate(180deg);
     }
     .arrow {
       position: absolute;
@@ -125,7 +124,7 @@ export default {
       border-top: 5px solid #fff;
       border-right: 5px solid transparent;
       border-left: 5px solid transparent;
-      transition: border 0.2s;
+      transition: transform 0.2s;
     }
   }
   .profile img {
@@ -139,13 +138,13 @@ export default {
   .arrow-box {
     position: absolute;
     bottom: 100%;
-    right: 10px;
+    right: 17px;
     width: 0;
     height: 0;
     background: transparent;
-    border-bottom: 18px solid #fff;
-    border-right: 18px solid transparent;
-    border-left: 18px solid transparent;
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
   }
   .drop-down-profile {
     visibility: hidden;
