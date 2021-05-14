@@ -1,9 +1,5 @@
 <template>
   <div>
-    <!-- movie poster -->
-    <!-- <div class="overviewInfo">
-      <p>Overiew: {{ movieInfo.overview }}</p>
-    </div> -->
     <div class="card">
       <img
         class="fix-size-img"
@@ -71,14 +67,15 @@ export default {
   data() {
     return {
       flags: ["it", "en"],
-      movieInfo: {},
+      // movieInfo: {},
     };
   },
   methods: {
-    moviesInfo(detail) {
-      this.movieInfo = detail;
-      console.log(this.movieInfo);
-    },
+    //this one i take info of a single movie
+    // moviesInfo(detail) {
+    //   this.movieInfo = detail;
+    //   console.log(this.movieInfo);
+    // },
     changeNumber(number) {
       return Math.round((number * 5) / 10);
     },
@@ -99,68 +96,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.card {
-  position: relative;
-  width: 342px;
-  margin: 5px;
-  border-radius: 5px;
-  filter: drop-shadow(3px 0px 3px #444141a8);
-  overflow: hidden;
-
-  &:hover .card-info {
-    visibility: visible;
-  }
-  .fix-size-img {
-    object-fit: contain;
-    object-position: bottom;
-  }
-}
-.overviewInfo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  color: #fff;
-  background: #0e0e0eb2;
-  border: 1px solid rgba(238, 238, 238, 0.671);
-}
-
-.card-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  padding: 10px;
-  color: #fff;
-  font-size: 0.8rem;
-  background: #0e0e0eb0;
-  visibility: hidden;
-  transition: visibility 0.2s;
-  &:hover {
-    cursor: pointer;
-  }
-  & > div {
-    margin-bottom: 5px;
-  }
-}
-.bold {
-  font-weight: 600;
-}
-
-.overflow-fix {
-  width: 342px;
-}
-
-.gold-star {
-  color: rgba(228, 176, 5, 0.904);
-}
-
-.langImg img {
-  width: 32px;
-}
+@import "@/assets/Styles/Card.scss";
 </style>

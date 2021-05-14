@@ -1,0 +1,58 @@
+@import "./Variabile.scss";
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: $flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 65px;
+  height: 70px;
+  background: #0e0e0ece;
+  z-index: 1;
+}
+.search-box {
+  width: 45%;
+  display: $flex;
+  align-items: center;
+  justify-content: space-between;
+  .search {
+    display: $flex;
+    align-items: center;
+    height: 25px;
+    width: 230px;
+    background: transparent;
+    cursor: $pointer;
+
+    input {
+      display: $flex;
+      margin-left: 5px;
+      width: 200px;
+      border: $none;
+      padding: 4px;
+      background: $color-white;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      animation: search 0.3s linear;
+      outline: $none;
+      transition: border 0.1s;
+      &:focus {
+        outline: 2px solid #d91a28;
+      }
+    }
+  }
+}
+
+button {
+  border: none;
+  background: transparent;
+  padding: 5px 10px;
+  cursor: $pointer;
+}
+
+i {
+  font-size: 18px;
+  color: $color-white;
+}

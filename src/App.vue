@@ -33,7 +33,7 @@ export default {
       series: [],
       popularMovies: [],
       popularSeries: [],
-      loading: true,
+      // loading: true,
     };
   },
   created() {
@@ -56,6 +56,7 @@ export default {
           this.popularSeries = res.data.results;
         });
     },
+
     getPopularMovies() {
       /**
        * API call for popular movies home page

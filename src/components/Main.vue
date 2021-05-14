@@ -25,6 +25,7 @@
         />
       </div>
     </section>
+
     <!-- movies -->
     <section v-show="listOfMovies.length" class="movies">
       <span

@@ -88,54 +88,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/Styles/Variabile.scss";
-.card {
-  position: relative;
-  width: 185px;
-  margin: 5px;
-  border-radius: 5px;
-  filter: drop-shadow(3px 0px 3px #444141a8);
-  overflow: hidden;
-  cursor: pointer;
-
-  &:hover .card-info {
-    visibility: visible;
-  }
-  .fix-size-img {
-    object-fit: contain;
-    object-position: bottom;
-  }
-}
-
-.card-info {
-  display: $flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  padding: 10px;
-  color: #fff;
-  font-size: 0.8rem;
-  background: #0e0e0eb0;
-  visibility: hidden;
-  transition: visibility 0.2s;
-  & > div {
-    margin-bottom: 5px;
-  }
-}
-
-.bold {
-  font-weight: 600;
-}
-
-.gold-star {
-  color: rgba(228, 176, 5, 0.904);
-}
-
-.langImg img {
-  width: 32px;
-}
+@import "@/assets/Styles/CardHome.scss";
 </style>
