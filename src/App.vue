@@ -6,7 +6,6 @@
 
     <Main
       :listOfMovies="movies"
-      :searchResult="searching"
       :listOfSeries="series"
       :listOfPopular="popularMovies"
       :listOfPopSeries="popularSeries"
@@ -16,7 +15,6 @@
 
 <script>
 import axios from "axios";
-// :searchResult="searching"
 import Header from "./components/Header";
 import Main from "./components/Main";
 
@@ -35,10 +33,7 @@ export default {
       series: [],
       popularMovies: [],
       popularSeries: [],
-      // filteredMovies: [],
-      // flags: ["@/assets/img/en.png", "@/assets/img/it.png"],
       loading: true,
-      searching: "",
     };
   },
   created() {

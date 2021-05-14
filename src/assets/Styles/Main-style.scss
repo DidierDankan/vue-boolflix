@@ -1,0 +1,48 @@
+// style di Main component
+main {
+  height: 100vh;
+  padding-top: 75px;
+  overflow: auto;
+  background-image: linear-gradient(180deg, #1a1818, #110b0a);
+  h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+}
+.movies {
+  position: relative;
+  .clearResearch {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #7a120c;
+    font-size: 1.2rem;
+    i {
+      cursor: pointer;
+    }
+  }
+}
+.series {
+  position: relative;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  .clearResearch {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: #7a120c;
+    font-size: 1.2rem;
+    i {
+      cursor: pointer;
+    }
+  }
+}
+
+.card-expo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 5px;
+  width: calc(98vw - 5px);
+  overflow-x: scroll;
+}

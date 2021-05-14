@@ -1,6 +1,9 @@
 <template>
   <div>
     <!-- movie poster -->
+    <!-- <div class="overviewInfo">
+      <p>Overiew: {{ movieInfo.overview }}</p>
+    </div> -->
     <div class="card">
       <img
         class="fix-size-img"
@@ -9,6 +12,7 @@
         :alt="detail.title"
       />
       <img
+        class="overflow-fix"
         v-else
         src="https://www.altavod.com/assets/images/poster-placeholder.png"
         alt=""
@@ -16,14 +20,14 @@
       <!-- on img hover -->
       <div class="card-info">
         <!--  movie info -->
-        <div>Title: {{ getTitle() }}</div>
+        <div><span class="bold">Title:</span> {{ getTitle() }}</div>
         <div v-show="getTitle() !== getOriginalTitle()">
-          Original Title:
+          <span class="bold">Original Title:</span>
           {{ getOriginalTitle() }}
         </div>
         <!-- validation for language flag -->
         <div class="langImg">
-          <span>Original Language: </span>
+          <span class="bold">Original Language: </span>
           <img
             v-if="getFlag(detail.original_language)"
             :src="require(`@/img/${detail.original_language}.png`)"
@@ -33,7 +37,7 @@
         </div>
         <!-- vote -->
         <div>
-          Vote:
+          <span class="bold">Vote:</span>
           <span
             class="gold-star"
             v-for="(star, x) in changeNumber(detail.vote_average)"
@@ -49,7 +53,9 @@
           </span>
         </div>
         <div>
-          <p class="overview">Overiew: {{ detail.overview }}</p>
+          <p class="overview">
+            <span class="bold">Overiew:</span> {{ detail.overview }}
+          </p>
         </div>
       </div>
     </div>
@@ -64,17 +70,19 @@ export default {
   },
   data() {
     return {
-      qualityStars: "",
       flags: ["it", "en"],
+      movieInfo: {},
     };
   },
   methods: {
+    moviesInfo(detail) {
+      this.movieInfo = detail;
+      console.log(this.movieInfo);
+    },
     changeNumber(number) {
       return Math.round((number * 5) / 10);
     },
-    getStars() {
-      this.qualityStars = this.changeNumber(this.serie.vote_average);
-    },
+
     getFlag(lang) {
       return this.flags.includes(lang);
     },
@@ -94,7 +102,6 @@ export default {
 .card {
   position: relative;
   width: 342px;
-  height: 460px;
   margin: 5px;
   border-radius: 5px;
   filter: drop-shadow(3px 0px 3px #444141a8);
@@ -107,6 +114,16 @@ export default {
     object-fit: contain;
     object-position: bottom;
   }
+}
+.overviewInfo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  color: #fff;
+  background: #0e0e0eb2;
+  border: 1px solid rgba(238, 238, 238, 0.671);
 }
 
 .card-info {
@@ -124,9 +141,19 @@ export default {
   background: #0e0e0eb0;
   visibility: hidden;
   transition: visibility 0.2s;
+  &:hover {
+    cursor: pointer;
+  }
   & > div {
     margin-bottom: 5px;
   }
+}
+.bold {
+  font-weight: 600;
+}
+
+.overflow-fix {
+  width: 342px;
 }
 
 .gold-star {

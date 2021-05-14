@@ -16,14 +16,16 @@
       <!-- on img hover -->
       <div class="card-info">
         <!--  movie info -->
-        <div>Title: {{ getTitle() }}</div>
+        <div><span class="bold">Title:</span> {{ getTitle() }}</div>
         <div v-show="getTitle() !== getOriginalTitle()">
-          Original Title:
-          {{ getOriginalTitle() }}
+          <div>
+            <span class="bold">Original Title:</span>
+            {{ getOriginalTitle() }}
+          </div>
         </div>
         <!-- validation for language flag -->
         <div class="langImg">
-          <span>Original Language: </span>
+          <span class="bold">Original Language: </span>
           <img
             v-if="getFlag(detail.original_language)"
             :src="require(`@/img/${detail.original_language}.png`)"
@@ -33,7 +35,7 @@
         </div>
         <!-- vote -->
         <div>
-          Vote:
+          <span class="bold">Vote:</span>
           <span
             class="gold-star"
             v-for="(star, x) in changeNumber(detail.vote_average)"
@@ -69,9 +71,7 @@ export default {
     changeNumber(number) {
       return Math.round((number * 5) / 10);
     },
-    getStars() {
-      this.qualityStars = this.changeNumber(this.serie.vote_average);
-    },
+
     getFlag(lang) {
       return this.flags.includes(lang);
     },
@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/Styles/Variabile.scss";
 .card {
   position: relative;
   width: 185px;
@@ -107,7 +108,7 @@ export default {
 }
 
 .card-info {
-  display: flex;
+  display: $flex;
   flex-direction: column;
   justify-content: center;
   position: absolute;
@@ -124,6 +125,10 @@ export default {
   & > div {
     margin-bottom: 5px;
   }
+}
+
+.bold {
+  font-weight: 600;
 }
 
 .gold-star {
