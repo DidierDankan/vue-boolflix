@@ -89,6 +89,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/Styles/Variabile.scss";
 @import "@/assets/Styles/Profilo-nav.scss";
 </style>
